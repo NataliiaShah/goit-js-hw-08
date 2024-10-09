@@ -81,3 +81,20 @@ const imgItems = images.map(({ preview, original, description }) =>
         </a>
     </li>`
 ).join('');
+
+gallery.insertAdjacentHTML('beforeend', imgItems);
+
+function onClickOpenImg(event) {
+    event.preventDefault();
+    const { target } = event;
+
+    if (target.nodeName !== "IMG") {
+        return;
+    }
+
+    const instance = basicLightbox.create(
+        `<img src="${target.dataset.source}" alt="${target.alt}" width="1280">`)
+    instance.show();
+
+}
+
